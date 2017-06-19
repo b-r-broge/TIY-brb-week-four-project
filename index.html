@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Soundcloud Search and Play App</title>
+    <link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
     <div class="body">
       <div class="header-area">
-        <h1>Good, Sound Fun.</h1>
-        <input type="text" class="search" name="" value="">
+        <h1>Good, <strong>Sound</strong> Fun.</h1>
+        <input type="text" v-model="artistName" class="search" name="" value="" placeholder="Pick an artist...">
+        <button type="button" class="search-btn" @click="populateArtist" name="button">Search</button>
       </div>
       <div class="player">
         <div class="playing-artist-art"></div>

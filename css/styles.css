@@ -1,0 +1,36 @@
+body {
+  background: #545454;
+  font-family: 'spectral';
+}
+
+.header-area {
+  text-align: center;
+  padding: 2vh 0;
+  margin: 0 auto;
+  background: url('../assets/equalizer.png') center/cover no-repeat;
+  height: 30vh;
+  width: 100vw;
+}
+
+h1 {
+  font-size: 3em;
+  color: white;
+  text-shadow:
+  3px 3px 0 #000,
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
+}
+
+input {
+  width: 60vw;
+  text-align: center;
+}
+
+button {
+  color: white;
+  background: navy;
+  padding: 1vh 2vw;
+  border: 0;
+}
