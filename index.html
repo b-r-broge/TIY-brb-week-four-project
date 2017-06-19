@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Soundcloud Search and Play App</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="body">
+      <div class="header-area">
+        <h1>Good, Sound Fun.</h1>
+        <input type="text" class="search" name="" value="">
+      </div>
+      <div class="player">
+        <div class="playing-artist-art"></div>
+        <div class="playing-music-active"></div>
+        <div class="playing-artist-bio"></div>
+        <div class="playing-additional-tracks"></div>
+      </div>
+      <div class="artist-lib">
+        <!-- max 4, then add a scroll -->
+        <artist v-for="res in artists"></artist>
+      </div>
+      <div class="track-lib">
+        <!-- max 10 in a list, add pages as necessary -->
+      </div>
+
+    </div>
+    <script src="https://unpkg.com/vue" charset="utf-8"></script>
+    <script src="js/main.js" charset="utf-8"></script>
+  </body>
+</html>
