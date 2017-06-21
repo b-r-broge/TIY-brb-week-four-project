@@ -1,6 +1,9 @@
 body {
   background: #545454;
   font-family: 'spectral';
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .header-area {
@@ -8,7 +11,7 @@ body {
   padding: 2vh 0;
   margin: 0 auto;
   background: url('../assets/equalizer.png') center/cover no-repeat;
-  height: 30vh;
+  height: 200px;
   width: 100vw;
 }
 
@@ -33,4 +36,9 @@ button {
   background: navy;
   padding: 1vh 2vw;
   border: 0;
+}
+
+.artist-lib {
+  display: flex;
+  justify-content: space-around;
 }
