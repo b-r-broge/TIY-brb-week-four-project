@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
   </head>
+
+
   <body>
-    <div class="body">
+    <div id="body">
       <div class="header-area">
         <h1>Good, <strong>Sound</strong> Fun.</h1>
+        <div class="player">
+          <div class="playing-artist-art"></div>
+          <audio controls :class="active" :src="currentTrack" :type="currentFormat" autoplay> </audio>
+          <div class="playing-artist-bio"></div>
+          <div class="playing-additional-tracks"></div>
+        </div>
         <input type="text" v-model="artistName" class="search" @keyup.13="populateArtist" name="" value="" placeholder="Pick an artist...">
         <button type="button" class="search-btn" @click="populateArtist" name="button">Search</button>
-      </div>
-      <div class="player">
-        <div class="playing-artist-art"></div>
-        <div class="playing-music-active"></div>
-        <div class="playing-artist-bio"></div>
-        <div class="playing-additional-tracks"></div>
       </div>
       <div class="artist-lib">
         <template v-for="res of artists">
@@ -29,11 +31,21 @@
         </template>
       </div>
       <div class="track-lib">
-        <ol>
-          <template id="track-list" v-for="track of trackList">
-          </template>
-        </ol>
-        <!-- max 10 in a list, add pages as necessary -->
+        <table>
+          <thead>
+          </thead>
+          <tbody>
+            <template v-for="track in trackList">
+              <tr @click="addToPlayer" class="track" :class='track.format' :id='track.stream'>
+                <td class="track-art"><img :src="track.art"></td>
+                <td class="track-name">{{track.title}}</td>
+                <td class="track-duration">{{track.duration}}</td>
+                <td class="track-desc">{{track.description}}</td>
+                <!-- add @click to popup full description on description td -->
+              </tr>
+            </template>
+          </tbody>
+        </table>
       </div>
 
     </div>
