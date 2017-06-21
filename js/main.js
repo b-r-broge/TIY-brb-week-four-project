@@ -1,7 +1,6 @@
 const apiKey = "41f6b5a26693fd92184ddd76aaeef8ef"
 
 function buildTrack(trackObj) {
-  // Need artwork, title, duration, description (if it exists),
   // console.log(trackObj);
   let outObj = {
     title: trackObj.title,
@@ -9,7 +8,7 @@ function buildTrack(trackObj) {
     fulldescription: trackObj.description,
     stream: trackObj.stream_url,
     format: trackObj.original_format,
-    active: 'false'
+    active: ''
   }
   if (trackObj.artwork_url === null) {
     outObj.art = "./assets/track-placeholder.png"
@@ -40,17 +39,18 @@ var songapp = new Vue({
     trackList: [],
     currentTrack: "",
     currentFormat: "",
-    active: ""
+    active: "hidden"
   },
   methods: {
     populateArtist: function() {
       // console.log(this.artistName);
       this.artists = [];
-      let request = `https://api.soundcloud.com/users/?client_id=${apiKey}&q=${this.artistName}`;
-      console.log('api request: ', request);
-      fetch(request).then(function(resp) {
+      let userRequest = `https://api.soundcloud.com/users/?client_id=${apiKey}&q=${this.artistName}`;
+      let songRequest = `https://api.soundcloud.com/tracks/?client_id=${apiKey}&q=${this.artistName}`;
+      // console.log('api request: ', userRequest);
+      fetch(userRequest).then(function(resp) {
         if (resp.status !== 200) {
-          console.log('Error encountered fetching from soundcloud. ', res.status);
+          console.log('Error encountered fetching artists from soundcloud. ', resp.status);
           return;
         }
         // console.log(resp.status);
@@ -66,11 +66,25 @@ var songapp = new Vue({
           }
         });
       });
+      fetch(songRequest).then(function(resp) {
+        if (resp.status !== 200) {
+          console.log('Error encountered fetching songs from soundcloud', resp.status);
+          return;
+        }
+        resp.json().then(function(data) {
+          songapp.trackList = [];
+          for (let tr of data) {
+            let track = buildTrack(tr);
+            // console.log(track);
+            songapp.trackList.push(track);
+          }
+        })
+      })
       this.artistName = "";
     },
     populateTracks: function(e) {
       // console.log(e);
-      let artist = e.target.parentElement.className.split(' ')[1];
+      let artist = e.target.parentElement.className.split(' ').splice(1, 10).join('%20');
       // console.log(artist);
       let request = `https://api.soundcloud.com/tracks/?client_id=${apiKey}&q=${artist}`;
       console.log(request);
@@ -98,16 +112,10 @@ var songapp = new Vue({
       console.log(streamUrl, streamFormat);
       this.currentTrack = streamUrl;
       this.currentFormat = streamFormat;
-      this.active = 'true';
+      this.active = '';
       songapp.$forceUpdate();
       // Vue.set('audio source', 'src', streamUrl);
       // Vue.set('audio source', 'type', streamFormat);
     }
   }
-  // watch: {
-  //   currentFormat: function(format) {
-  //     console.log(format)
-  //     this.$forceUpdate();
-  //   }
-  // }
 });
