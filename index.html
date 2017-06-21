@@ -22,7 +22,14 @@
       </div>
       <div class="artist-lib">
         <!-- max 4, then add a scroll -->
-        <artist v-for="res in artists"></artist>
+        <!-- <artist v-for="res of artists" :artwork=res.artwork :name=res.name></artist> -->
+        <!-- templates? -->
+        <template v-for="res of artists">
+          <div class="artist">
+            <img :src="res.artwork">
+            <h6>{{res.name}}</h6>
+          </div>
+        </template>
       </div>
       <div class="track-lib">
         <!-- max 10 in a list, add pages as necessary -->
