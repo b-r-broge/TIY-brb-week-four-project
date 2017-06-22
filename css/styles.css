@@ -7,6 +7,8 @@ body {
   justify-content: center;
   box-sizing: border-box;
   background: url('../assets/equalizer.png') center/cover no-repeat fixed;
+  min-height: 100vh;
+  max-width: 100vw;
 }
 
 .header-area {
