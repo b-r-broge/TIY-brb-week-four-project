@@ -3,6 +3,8 @@ body {
   font-family: 'spectral';
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   background: url('../assets/equalizer.png') center/cover no-repeat fixed;
 }
@@ -51,7 +53,8 @@ input[type='text'] {
 button {
   color: white;
   background: navy;
-  padding: 1vh 2vw;
+  font-size: 1.2em;
+  padding: .5vh 2vw;
   border: 1px solid lightgrey;
 }
 
@@ -68,7 +71,7 @@ button {
 
 .artist img {
   border-radius: 50%;
-  border: 1px solid white;
+  border: 2px solid white;
 }
 
 .artist h6 {
